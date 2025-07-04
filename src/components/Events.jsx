@@ -15,14 +15,14 @@ const HUREvents = () => {
   const [filteredEvents, setFilteredEvents] = useState(events);
   const [loading, setLoading] = useState(true);
   
-
+ const APIURL=import.meta.env.VITE_API_URL
 
 
 
 useEffect(() => {
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/event/get');
+      const response = await fetch(`${APIURL}/api/event/get`);
       const data = await response.json();
       if (data.success && Array.isArray(data.data)) {
         dispatch(setEvents(data.data));

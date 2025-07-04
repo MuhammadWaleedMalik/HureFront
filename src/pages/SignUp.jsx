@@ -8,6 +8,7 @@ import styles from '../../styles/colors.module.scss';
 const SignUp = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const APIURL=import.meta.env.VITE_API_URL
 
   const [formData, setFormData] = useState({
     name: "",
@@ -51,7 +52,7 @@ const SignUp = () => {
       };
       delete userData.confirmPassword;
 
-      const response = await axios.post('http://localhost:4000/api/user/register', userData);
+      const response = await axios.post(`${APIURL}/api/user/register`, userData);
       
       if (response.data.success) {
         console.log(response)

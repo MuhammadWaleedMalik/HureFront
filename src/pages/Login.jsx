@@ -13,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const APIURL=import.meta.env.VITE_API_URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const Login = () => {
 
     try {
       // Call the login API endpoint
-      const response = await axios.post('http://localhost:4000/api/user/login', {
+      const response = await axios.post(`${APIURL}/api/user/login`, {
         email,
         password
       });

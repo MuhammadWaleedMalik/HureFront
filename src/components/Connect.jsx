@@ -25,6 +25,7 @@ const HUREConnect = () => {
     category: 'General',
     visibility: 'Role-Based'
   });
+  const APIURL=import.meta.env.VITE_API_URL
 
   // Get user from local storage
   const [currentUser, setCurrentUser] = useState(null);
@@ -63,7 +64,7 @@ const HUREConnect = () => {
   useEffect(() => {
     const fetchProfessionals = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/user/get');
+        const response = await fetch(`${APIURL}/api/user/get`);
         const data = await response.json();
         
         if (data.success) {
@@ -90,7 +91,7 @@ const HUREConnect = () => {
   useEffect(() => {
     const fetchDiscussions = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/dicussion/get');
+        const response = await fetch(`${APIURL}/api/dicussion/get`);
         const data = await response.json();
         
         if (data.success) {
@@ -188,7 +189,7 @@ const handlePostDiscussion = async (e) => {
 
     const token = localStorage.getItem('token');
 
-    const response = await fetch('http://localhost:4000/api/dicussion/add', {
+    const response = await fetch(`${APIURL}/api/dicussion/add`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -283,7 +284,7 @@ const handleConnect = async (clientEmail) => {
         console.log('Sending request:', requestData); // Debug log
         
         // Call your API endpoint
-        const response = await fetch('http://localhost:4000/api/connect', {
+        const response = await fetch(`${APIURL}/api/connect`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

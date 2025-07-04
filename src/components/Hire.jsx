@@ -13,7 +13,7 @@ const HUREHire = () => {
     dispatch(fetchJobs());
   }, [dispatch]);
 
- 
+  const APIURL=import.meta.env.VITE_API_URL
   const [filteredJobs, setFilteredJobs] = useState([]);
   
 
@@ -84,7 +84,7 @@ const userId ='123'
   formData.append('appliedAt', new Date().toISOString());
 
   try {
-   const res = await fetch('http://localhost:4000/api/application/apply', {
+   const res = await fetch(`${APIURL}/api/application/apply`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

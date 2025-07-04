@@ -11,6 +11,7 @@ const UserDashboard = () => {
   // Get user info from local storage
   const user = JSON.parse(localStorage.getItem('user'));
   const userEmail = user.email;
+  const APIURL=import.meta.env.VITE_API_URL
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -25,7 +26,7 @@ const UserDashboard = () => {
           return;
         }
 
-        const response = await axios.get('http://localhost:4000/api/application/get', {
+        const response = await axios.get(`${APIURL}/api/application/get`, {
           headers: {
             'Content-Type': 'application/json',
           }

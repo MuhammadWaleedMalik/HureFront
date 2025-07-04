@@ -18,6 +18,7 @@ const ClinicDashboard = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const APIURL=import.meta.env.VITE_API_URL
 
   // Event states
   const [newEvent, setNewEvent] = useState({
@@ -43,7 +44,7 @@ const ClinicDashboard = () => {
       setIsLoading(true);
       try {
         // Fetch jobs
-        const jobsResponse = await fetch('http://localhost:4000/api/job/get');
+        const jobsResponse = await fetch(`${APIURL}/api/job/get`);
         const jobsData = await jobsResponse.json();
         if (jobsData.success) {
           // Filter jobs posted by the clinic
@@ -54,7 +55,7 @@ const ClinicDashboard = () => {
         }
 
         // Fetch applications
-        const appsResponse = await fetch('http://localhost:4000/api/application/get');
+        const appsResponse = await fetch(`${APIURL}/api/application/get`);
         const appsData = await appsResponse.json();
         if (appsData.success) {
           setApplications(appsData.data);
@@ -88,7 +89,7 @@ const ClinicDashboard = () => {
         postedBy: clinic.email
       };
 
-      const response = await fetch('http://localhost:4000/api/job/add', {
+      const response = await fetch(`${APIURL}/api/job/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -189,7 +190,7 @@ const ClinicDashboard = () => {
         postedBy: clinic.email
       };
 
-      const response = await fetch('http://localhost:4000/api/event/add', {
+      const response = await fetch(`${APIURL}/api/event/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
