@@ -1,0 +1,40 @@
+   /* =====================
+      IMPORT FONTS ONLINE
+      ===================== */
+   // @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap');
+
+   /* ================
+      FONT VARIABLES
+      ================ */
+
+   // Font Families
+   $heading-font: 'Poppins', sans-serif;
+   $subheading-font: 'Inter', 'Open Sans', sans-serif;
+
+   /* ================
+      COLOR VARIABLES
+      ================ */
+
+   // Earth-Tone Color Palette
+   $primary-color-1: #8D6E63; 
+   $primary-color-2: #8E9B97; 
+   $primary-color-3: #F4F1ED; 
+   $primary-color-4: #607D8B; 
+   $primary-color-5: #263238; 
+
+   /* ================
+      EXPORTS (For JS)
+      ================ */
+      
+   :export {
+   // Colors
+   primaryColor1: $primary-color-1;
+   primaryColor2: $primary-color-2;
+   primaryColor3: $primary-color-3;
+   primaryColor4: $primary-color-4;
+   primaryColor5: $primary-color-5;
+
+   // Fonts
+   headingFont: $heading-font;
+   subheadingFont: $subheading-font;
+   }
