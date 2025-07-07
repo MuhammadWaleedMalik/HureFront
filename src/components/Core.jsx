@@ -200,6 +200,9 @@ const APIURL=import.meta.env.VITE_API_URL
         </motion.button>
         
         <motion.button
+        onClick={()=>{
+          window.open('https://core.gethure.com', '_blank');
+        }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="px-6 py-3 rounded-md font-medium"
