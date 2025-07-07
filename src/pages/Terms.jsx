@@ -127,7 +127,7 @@ const sections = [
           custom={1}
           className="mb-12 p-8 rounded-2xl"
           style={{ 
-            backgroundColor: styles.primaryColor1,
+            backgroundColor: styles.primaryColor2,
             boxShadow: styles.shadowMd
           }}
         >
@@ -147,8 +147,8 @@ const sections = [
               variants={itemVariants}
               className="p-8 rounded-xl relative overflow-hidden"
               style={{
-                backgroundColor: styles.primaryColor2,
-                borderLeft: `4px solid ${styles.primaryColor1}`,
+                backgroundColor: styles.primaryColor3,
+                borderLeft: `4px solid ${styles.primaryColor3}`,
                 boxShadow: styles.shadowSm
               }}
               whileHover={{ 
@@ -165,7 +165,7 @@ const sections = [
                   className="text-3xl p-3 rounded-full flex-shrink-0"
                   style={{ 
                     backgroundColor: `${styles.primaryColor1}20`,
-                    color: styles.primaryColor1
+                    color: styles.primaryColor3
                   }}
                 >
                   {section.icon}

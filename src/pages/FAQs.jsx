@@ -7,120 +7,110 @@ const FAQs = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
-  {
-    question: 'What is HURE and how does it help clinics?',
-    answer: `HURE is a healthcare-focused HR and workforce management platform designed to streamline clinic operations. From staff onboarding and credential tracking to automated HR workflows, HURE simplifies complex administrative processes so clinics can focus on delivering quality care.`
-  },
-  {
-    question: 'Can HURE manage different staff roles like doctors and nurses?',
-    answer: `Yes, HURE supports role-based access and staff segmentation. You can assign specific permissions to doctors, nurses, HR personnel, and administrative staff. This ensures that each team member has access only to the tools and data relevant to their responsibilities.`
-  },
-  {
-    question: 'How does HURE handle staff license and credential compliance?',
-    answer: `HURE automatically tracks certifications, licenses, and renewal dates. It sends proactive alerts before expiry and securely stores documents for easy access during audits. This helps clinics stay compliant with regional healthcare regulations effortlessly.`
-  },
-  {
-    question: 'Is HURE suitable for small clinics or only large hospitals?',
-    answer: `HURE is scalable and flexible. Whether you're a small single-location clinic or a large multi-branch hospital, the platform adapts to your operational size. You can start small and expand as your team and needs grow.`
-  },
-  {
-    question: 'Can I track training progress and staff development in HURE?',
-    answer: `Absolutely. HURE includes built-in training management tools that let you assign learning modules, track completion, and issue certifications. This ensures your medical and administrative staff stay updated on protocols, compliance, and care standards.`
-  },
-  {
-    question: 'How secure is the data stored in HURE?',
-    answer: `HURE is built on enterprise-grade cloud infrastructure with end-to-end encryption, role-based access, and GDPR-compliant storage. We prioritize data privacy and security, ensuring your clinic’s records remain safe and confidential.`
-  },
-  {
-    question: 'Do you offer support after setup?',
-    answer: `Yes, we offer continuous support packages that include technical assistance, feature updates, bug fixes, and performance optimization. Our team is available to help you as your clinic evolves or scales its operations.`
-  },
-  {
-    question: 'How can I get started with HURE?',
-    answer: `To get started, visit our website at ${websites[0].contactwebsite} or book a free demo session. Our onboarding team will walk you through the platform, understand your needs, and set you up quickly for success.`
-  }
-];
+    {
+      icon: '❓',
+      question: 'What is HURE and how does it help clinics?',
+      answer: `HURE is a healthcare-focused HR platform that simplifies administrative work like onboarding, credential tracking, and compliance so clinics can focus on delivering care.`
+    },
+    {
+      icon: '🩺',
+      question: 'Can HURE manage different staff roles like doctors and nurses?',
+      answer: `Yes, you can assign role-based access for doctors, nurses, HR, and admin staff — giving each group the right permissions.`
+    },
+    {
+      icon: '🔐',
+      question: 'How does HURE handle license and credential compliance?',
+      answer: `HURE automatically tracks license renewal dates, sends alerts, and stores compliance documents securely for audits.`
+    },
+    {
+      icon: '🏥',
+      question: 'Is HURE suitable for small clinics or only large hospitals?',
+      answer: `HURE is built to scale — it works just as well for a small clinic as it does for a multi-location hospital.`
+    },
+    {
+      icon: '📘',
+      question: 'Can I track training progress and staff development in HURE?',
+      answer: `Yes, HURE includes training tools for assigning modules, tracking completion, and issuing certifications.`
+    },
+    {
+      icon: '🛡️',
+      question: 'How secure is the data stored in HURE?',
+      answer: `HURE uses end-to-end encryption, GDPR-compliant infrastructure, and role-based access to keep your data secure.`
+    },
+    {
+      icon: '💬',
+      question: 'Do you offer support after setup?',
+      answer: `Yes, we offer ongoing technical support, updates, and optimization packages for clinics of all sizes.`
+    },
+    {
+      icon: '🚀',
+      question: 'How can I get started with HURE?',
+      answer: `Just visit ${websites[0].contactwebsite} or book a free demo. We’ll onboard your clinic in minutes.`
+    }
+  ];
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
-    <div 
+    <div
+      className="w-[full] max-w-4xl mt-24  mx-auto py-12 px-4 md:px-6"
       style={{
-        width: '100%',
-        maxWidth: '56rem',
-        margin: '0 auto',
-        padding: '3rem 1rem',
         backgroundColor: styles.primaryColor3,
-        fontFamily: styles.bodyText
+        fontFamily: styles.bodyText,
       }}
     >
-      <div style={{ 
-        textAlign: 'center',
-        marginBottom: '3rem'
-      }}>
-        <h2 style={{
-          fontSize: '2.275rem',
-          fontStyle : 'italic',
-          fontWeight: '700',
-          marginBottom: '1rem',
-          marginTop: '5rem',
-          color: styles.primaryColor1,
-          fontFamily: styles.headings
-        }}>
-          Frequently Asked Questions
+      <div className="text-center mb-10">
+        <h2
+          style={{
+            fontSize: '2.25rem',
+            fontWeight: '700',
+            color: styles.primaryColor1,
+            fontFamily: styles.headings
+          }}
+        >
+          FAQs — Frequently Asked Questions
         </h2>
-        <p style={{
-          fontSize: '1.125rem',
-          color: styles.primaryColor4,
-          fontFamily: styles.headings
-        }}>
+        <p
+          style={{
+            fontSize: '1.125rem',
+            color: styles.primaryColor4,
+            fontFamily: styles.headings
+          }}
+        >
           Everything you need to know about our services
         </p>
       </div>
 
-      <div style={{ display: 'grid', gap: '1rem' }}>
+      <div className="grid gap-4">
         {faqs.map((faq, index) => (
-          <motion.div 
+          <motion.div
             key={index}
+            className="rounded-xl border overflow-hidden transition-all"
             style={{
-              border: `1px solid ${styles.primaryColor1}`,
-              borderRadius: '1.5rem',
-              overflow: 'hidden'
+              borderColor: styles.primaryColor1,
+              backgroundColor: "#ffffff"
             }}
-            whileHover={{ boxShadow: `0 4px 12px ${styles.primaryColor2}` }}
+            whileHover={{ boxShadow: `0 6px 16px ${styles.primaryColor2}` }}
             transition={{ duration: 0.3 }}
           >
             <button
               onClick={() => toggleFAQ(index)}
+              className="w-full text-left flex justify-between items-center px-5 py-4"
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                width: '100%',
-                padding: '1rem',
-                textAlign: 'left',
-                backgroundColor: styles.primaryColor2,
-                border: 'none',
-                cursor: 'pointer'
+                backgroundColor: "#f9f9f9",
+                borderBottom: `1px solid ${styles.primaryColor2}`,
+                cursor: "pointer"
               }}
             >
-              <h3 style={{
-                fontSize: '1.125rem',
-                fontWeight: '500',
-                color: styles.primaryColor5,
-                fontFamily: styles.headings,
-                margin: 0
-              }}>
+              <span className="flex items-start gap-2 text-lg font-semibold text-gray-800">
+                <span>{faq.icon}</span>
                 {faq.question}
-              </h3>
+              </span>
               <motion.span
                 animate={{ rotate: activeIndex === index ? 45 : 0 }}
-                style={{
-                  fontSize: '1.5rem',
-                  color: styles.primaryColor1
-                }}
+                className="text-xl font-bold text-gray-500"
                 transition={{ duration: 0.3 }}
               >
                 +
@@ -130,21 +120,13 @@ const FAQs = () => {
             <AnimatePresence>
               {activeIndex === index && (
                 <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ 
-                    opacity: 1, 
-                    height: 'auto',
-                    backgroundColor: styles.primaryColor3
-                  }}
-                  exit={{ opacity: 0, height: 0 }}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  style={{
-                    color: styles.primaryColor1,
-                    padding: '0 1rem'
-                  }}
                 >
-                  <div style={{ padding: '1rem 0' }}>
-                    <p style={{ fontFamily: styles.bodyText, margin: 0 }}>{faq.answer}</p>
+                  <div className="px-5 py-4 text-gray-700 text-base" style={{ backgroundColor: "#ffffff" }}>
+                    {faq.answer}
                   </div>
                 </motion.div>
               )}
@@ -152,7 +134,6 @@ const FAQs = () => {
           </motion.div>
         ))}
       </div>
-
     </div>
   );
 };

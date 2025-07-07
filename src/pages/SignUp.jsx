@@ -90,7 +90,7 @@ const SignUp = () => {
             fontFamily: styles.headingFont
           }}
         >
-          {t("signup")}
+          {t("sign up")}
         </h1>
         <p 
           className="text-lg"

@@ -168,7 +168,7 @@ const Privacy = () => {
               variants={itemVariants}
               className="p-8 rounded-xl relative overflow-hidden"
               style={{
-                backgroundColor: styles.primaryColor2,
+                backgroundColor: styles.primaryColor3,
                 borderLeft: `4px solid ${styles.primaryColor1}`,
                 boxShadow: styles.shadowSm
               }}

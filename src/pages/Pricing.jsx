@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FiCheck } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const colors = {
   primary: "#8D6E63",
@@ -17,7 +18,7 @@ const Pricing = () => {
     { 
       id: "essential", 
       name: "Essential", 
-      price: "6,500", 
+      price: "8000", 
       duration: "month", 
       currency: "Ksh",
       idealFor: "Solo clinics or small teams (5–15 staff)",
@@ -30,13 +31,13 @@ const Pricing = () => {
         "License alerting (up to 3 staff roles)",
         "2 workflow automations (e.g., onboarding, leave)",
         "Standard email support (response within 48 hours)",
-        "Remote onboarding via Zoom/WhatsApp"
+        "Remote onboarding via Zoom/WhatsApp",
       ] 
     },
     { 
       id: "professional", 
       name: "Professional", 
-      price: "13,000", 
+      price: "15,000", 
       duration: "month", 
       currency: "Ksh",
       isPopular: true,
@@ -57,7 +58,7 @@ const Pricing = () => {
     { 
       id: "enterprise", 
       name: "Enterprise", 
-      price: "20,000", 
+      price: "25,000", 
       duration: "month", 
       currency: "Ksh",
       idealFor: "Clinic groups or multi-site teams",
@@ -95,6 +96,7 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
       {/* Pricing Section */}
+  
       <section className="py-16 px-4 lg:px-12">
         <h1 className="text-5xl font-bold text-center mb-8" style={{ color: colors.primary }}>Pricing</h1>
         <p className="text-center mb-6"><a href="#full-details" className="text-blue-600 underline">View Full Plan Details</a></p>
@@ -108,7 +110,7 @@ const Pricing = () => {
                   <li key={i} className="flex items-center mb-2"><FiCheck className="mr-2" style={{ color: colors.primary }} /> {feature}</li>
                 ))}
               </ul>
-              <button className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700">Sign Up</button>
+              <Link to={"signup"} className="w-[100px] bg-gray-800 text-white py-2 px-8 rounded-lg hover:bg-gray-700">Sign Up</Link>
             </div>
           ))}
         </div>

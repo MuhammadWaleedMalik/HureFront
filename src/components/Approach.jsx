@@ -1,59 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import styles from '../../styles/colors.module.scss';
 
-const ApproachFlowchart = () => {
- const steps = [
-  {
-    title: "Sign Up Your Clinic",
-    description: "Create your HURE account and clinic profile in minutes.",
-    icon: "📝",
-    color: "bg-green-600",
-    position: "left",
-  },
-  {
-    title: "Add Your Team",
-    description: "Invite healthcare staff and assign roles like HR Admin, Doctor, or Nurse.",
-    icon: "👥",
-    color: "bg-yellow-600",
-    position: "right",
-  },
-  {
-    title: "Automate HR Tasks",
-    description: "Use HURE Core to manage time tracking, leave, contracts, and compliance — all in one dashboard.",
-    icon: "⚙️",
-    color: "bg-red-600",
-    position: "left",
-    services: [
-      "Time Tracking",
-      "Leave Management",
-      "Digital Contracts",
-      "HR Compliance",
-    ],
-  },
-  {
-    title: "Explore the HURE Ecosystem",
-    description: "Post jobs, host or attend training, and connect with professionals — all through one login.",
-    icon: "🌐",
-    color: "bg-blue-700",
-    position: "right",
-  },
-];
+const ApproachFlowchart = ({ colors }) => {
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
-  // Calculate positions for the connecting line
-  const linePoints = steps.map((_, i) => {
-    const x = i % 2 === 0 ? 25 : 75;
-    const y = 15 + i * 23;
-    return { x, y };
-  });
+  const steps = [
+    {
+      title: "Sign Up Your Clinic",
+      description: "Create your HURE account and clinic profile in minutes.",
+      icon: "📝",
+    },
+    {
+      title: "Add Your Team",
+      description: "Support your team with role-specific access and permissions.",
+      icon: "👥",
+    },
+    {
+      title: "Automate HR Tasks",
+      description: "Use HURE Core to standardize HR workflows.",
+      icon: "⚙️",
+      services: [
+        "Time Tracking",
+        "Leave Management",
+        "Digital Contracts",
+        "HR Compliance",
+      ],
+    },
+    {
+      
 
-  // Create SVG path data
-  const pathData = linePoints.reduce((acc, point, i) => {
-    if (i === 0) return `M ${point.x},${point.y}`;
-    return `${acc} L ${point.x},${point.y}`;
-  }, "");
+
+      title: "HURE Connect",
+      description: "Build your professional healthcare network.",
+      icon: "🌐",
+    },
+  ];
+
+  const toggleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: colors.primaryColor3 }}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -61,180 +50,128 @@ const ApproachFlowchart = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-            Our Development Process
+          <h1 
+            className="text-4xl font-bold sm:text-5xl mb-4"
+            style={{ color: colors.primaryColor5, fontFamily: styles.headingFont }}
+          >
+            How HURE Works
           </h1>
-          <p className="mt-4 text-xl text-gray-600">
-            A structured approach to delivering exceptional results
+          <p 
+            className="text-xl"
+            style={{ color: colors.primaryColor2, fontFamily: styles.subheadingFont }}
+          >
+            A simple, streamlined process for healthcare HR management
           </p>
         </motion.div>
 
-        <div className="relative h-[700px]">
-          {/* SVG connecting line with arrows */}
-          <svg
-            className="absolute w-full h-full top-0 left-0 pointer-events-none"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            <motion.path
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, delay: 0.5 }}
-              d={pathData}
-              stroke="#3b82f6"
-              strokeWidth="1.5"
-              fill="none"
-              strokeLinecap="round"
-            />
-            
-            {/* Arrow markers */}
-            <defs>
-              <marker
-                id="arrowhead"
-                markerWidth="10"
-                markerHeight="7"
-                refX="9"
-                refY="3.5"
-                orient="auto"
+        <div className="relative">
+          {/* Timeline line */}
+          <div 
+            className="absolute left-1/2 top-0 h-full w-1 transform -translate-x-1/2"
+            style={{ backgroundColor: colors.primaryColor4 }}
+          ></div>
+
+          {/* Timeline items */}
+          <div className="space-y-0 ">
+            {steps.map((step, index) => (
+              <div 
+                key={index}
+                className={`relative pl-8 pr-8 ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}
+                style={{ maxWidth: '500px' }}
               >
-                <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
-              </marker>
-            </defs>
-            
-            {/* Animated path with arrow markers */}
-            <motion.path
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, delay: 0.5 }}
-              d={pathData}
-              stroke="#3b82f6"
-              strokeWidth="1.5"
-              fill="none"
-              strokeLinecap="round"
-              markerEnd="url(#arrowhead)"
-              strokeDasharray="1000"
-              strokeDashoffset="1000"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="1000"
-                to="0"
-                dur="2s"
-                begin="0.5s"
-                fill="freeze"
-              />
-            </motion.path>
-          </svg>
-
-          {/* Step cards */}
-          <div className="relative z-10 h-full">
-            {steps.map((step, index) => {
-              const leftPosition = step.position === "left" ? "0" : "auto";
-              const rightPosition = step.position === "right" ? "0" : "auto";
-              const topPosition = `${10 + index * 23}%`;
-
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.3 + 0.5 }}
-                  className="absolute w-[45%]"
-                  style={{
-                    left: leftPosition,
-                    right: rightPosition,
-                    top: topPosition,
-                  }}
+                {/* Timeline dot */}
+                <div 
+                  className={`absolute top-5 w-8 h-8 text-center rounded-full ${index % 2 === 0 ? '-right-2' : '-left-2'}`}
+                  style={{ backgroundColor: colors.primaryColor1 }}
+                
                 >
-                  <div className="relative">
-                    {/* Step connector dot */}
+                  {index+1}
+                </div>
+
+                {/* Timeline card */}
+                <motion.div
+                  initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  className={`p-6 rounded-lg shadow-sm cursor-pointer transition-all duration-300 ${expandedIndex === index ? 'shadow-md' : 'hover:shadow-md'}`}
+                  style={{ 
+                    backgroundColor: colors.primaryColor3,
+                    border: `1px solid ${colors.primaryColor4}`,
+                  }}
+                  onClick={() => toggleExpand(index)}
+                >
+                  <div className="flex items-start">
                     <div 
-                      className={`absolute top-1/2 -translate-y-1/2 ${step.position === "left" ? "-right-12" : "-left-12"} w-4 h-4 rounded-full bg-blue-500 shadow-md`}
-                    />
-                    
-                    <div 
-                      className={`${step.color} w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-4 mx-auto shadow-md hover:scale-105 transition-transform duration-300`}
+                      className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-2xl mr-4"
+                      style={{ 
+                        backgroundColor: colors.primaryColor1,
+                        color: colors.primaryColor3
+                      }}
                     >
                       {step.icon}
                     </div>
-                    
-                    <motion.div 
-                      whileHover={{ y: -5 }}
-                      className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
-                    >
-                      <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                    <div className="flex-1">
+                      <h3 
+                        className="text-xl font-semibold"
+                        style={{ color: colors.primaryColor5, textDecoration : 'underline',fontFamily: styles.headingFont }}
+                      >
                         {step.title}
                       </h3>
-                      <p className="text-gray-600 mb-4">{step.description}</p>
-                      
-                      {step.services && (
-                        <div className="mt-4 pt-4 border-t border-gray-200">
-                          <h4 className="text-sm font-semibold text-gray-500 mb-2">
-                            Services Applied:
-                          </h4>
-                          <div className="flex flex-wrap gap-2">
-                            {step.services.map((service, i) => (
-                              <motion.span
-                                key={i}
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                transition={{ delay: i * 0.1 + 1 }}
-                                className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full hover:bg-blue-100 transition-colors"
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ 
+                          height: expandedIndex === index ? 'auto' : 0,
+                          opacity: expandedIndex === index ? 1 : 0
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4">
+                          <p 
+                            className="mb-4"
+                            style={{ color: colors.primaryColor4, fontFamily: styles.subheadingFont }}
+                          >
+                            {step.description}
+                          </p>
+                          
+                          {step.services && (
+                            <div className="mt-4 pt-4 border-t" style={{ borderColor: colors.primaryColor4 }}>
+                              <h4 
+                                className="text-sm font-semibold mb-2"
+                                style={{ color: colors.primaryColor4 }}
                               >
-                                {service}
-                              </motion.span>
-                            ))}
-                          </div>
+                                Services Included:
+                              </h4>
+                              <div className="flex flex-wrap gap-2">
+                                {step.services.map((service, i) => (
+                                  <motion.span
+                                    key={i}
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: expandedIndex === index ? 1 : 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="inline-block px-3 py-1 text-xs font-medium rounded-full"
+                                    style={{ 
+                                      backgroundColor: colors.primaryColor2,
+                                      color: colors.primaryColor3
+                                    }}
+                                  >
+                                    {service}
+                                  </motion.span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </motion.div>
+                      </motion.div>
+                    </div>
                   </div>
                 </motion.div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Process Overview */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="mt-24 bg-white p-6 rounded-xl shadow-md max-w-4xl mx-auto border border-gray-100"
-        >
-          <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
-            Process Overview
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-2">
-            {steps.map((step, index) => (
-              <React.Fragment key={index}>
-                <div className="flex items-center">
-                  <div className={`${step.color} w-3 h-3 rounded-full mr-2`}></div>
-                  <span className="text-sm font-medium text-gray-700">
-                    {step.title}
-                  </span>
-                </div>
-                {index < steps.length - 1 && (
-                  <div className="flex items-center px-1 text-gray-400">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </motion.div>
+    
       </div>
     </div>
   );

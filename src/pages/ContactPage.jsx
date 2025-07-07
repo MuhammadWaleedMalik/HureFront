@@ -1,16 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTwitter, FaFacebookF, FaLinkedinIn, FaYoutube, FaTiktok } from 'react-icons/fa';
 import websites from '../../utils/Website/Website_Info.js';
 import styles from '../../styles/colors.module.scss';
-import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
-  const form = useRef();
-
-  const [name, setname] = useState("");
-  const [email, setemail] = useState("");
-  const [message, setmessage] = useState("");
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ 
@@ -18,34 +17,53 @@ const ContactPage = () => {
     message: '' 
   });
 
-  // EmailJS configuration - replace these with your actual values
-  const serviceId = "service_bkan7mr";   // Your EmailJS service ID
-  const templateId = "template_qbs3qfo"; // Your EmailJS template ID
-  const publicKey = "_N-wzVWt_uU-YQLmY"; // Your EmailJS public key
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  const APIURL=import.meta.env.VITE_API_URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      await emailjs.sendForm(
-        serviceId,
-        templateId,
-        form.current,
-        publicKey
-      );
-
-      setSubmitStatus({ 
-        success: true, 
-        message: 'Message sent successfully! We\'ll contact you soon.' 
+      const response = await fetch(`${APIURL}/api/help`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          Email: formData.email,
+          Message: formData.message
+        })
       });
-      // Reset form
-      form.current.reset();
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({ 
+          success: true, 
+          message: 'Message sent successfully! We\'ll contact you soon.' 
+        });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        throw new Error(data.message || 'Failed to send message');
+      }
     } catch (error) {
       console.error('Failed to send message:', error);
       setSubmitStatus({ 
         success: false, 
-        message: 'Failed to send message. Please try again later.' 
+        message: error.message || 'Failed to send message. Please try again later.' 
       });
     } finally {
       setIsSubmitting(false);
@@ -86,16 +104,6 @@ const ContactPage = () => {
     }
   ];
 
-  // Calculate positions for social icons on the orbit
-  const getOrbitPosition = (index, total, radius) => {
-    const angle = (index * (360 / total)) - 90; // -90 to start from top
-    const radian = angle * (Math.PI / 180);
-    return {
-      x: radius * Math.cos(radian),
-      y: radius * Math.sin(radian)
-    };
-  };
-
   return (
     <div className='mt-24 mb-24 bg-[#FCF6F5FF]'>
       {/* Page metadata */}
@@ -126,7 +134,7 @@ const ContactPage = () => {
                   Send us a message
                 </h2>
                 
-                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name input */}
                   <div>
                     <label htmlFor="name" className={`block text-sm font-medium text-gray-700 mb-1 font-${styles.text}`}>
@@ -135,8 +143,9 @@ const ContactPage = () => {
                     <input
                       type="text"
                       id="name"
-                      name="from_name"
-                      onClick={(e) => setname(e.target.value)} 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       required
                       className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 text-green-800 focus:border-green-500 transition font-${styles.text}`}
                       placeholder="Your name"
@@ -151,8 +160,9 @@ const ContactPage = () => {
                     <input
                       type="email"
                       id="email"
-                      onClick={(e) => setemail(e.target.value)} 
-                      name="from_email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                       className={`w-full px-4 py-3 border text-green-800 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition font-${styles.text}`}
                       placeholder="your.email@example.com"
@@ -161,14 +171,14 @@ const ContactPage = () => {
 
                   {/* Message textarea */}
                   <div>
-                    <label htmlFor="message"  className={`block text-sm font-medium text-gray-700 mb-1 font-${styles.text}`}>
+                    <label htmlFor="message" className={`block text-sm font-medium text-gray-700 mb-1 font-${styles.text}`}>
                       Message
                     </label>
                     <textarea
                       id="message"
-                      name="from_message"
-                      onClick={(e) => setmessage(e.target.value)} 
-
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       rows={5}
                       required
                       className={`w-full text-green-800 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition font-${styles.text}`}
@@ -223,9 +233,6 @@ const ContactPage = () => {
                     />
                   </div>
                 </div>
-
-
-                
               </div>
             </div>
           </div>
