@@ -236,7 +236,7 @@ const Privacy = () => {
             }}
             transition={{ duration: 0.2 }}
           >
-            support@gethure.com
+            Info@gethure.com
           </motion.a>
           <motion.div 
             className="mt-8"

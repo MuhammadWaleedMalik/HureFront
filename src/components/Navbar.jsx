@@ -221,6 +221,17 @@ const Navbar = () => {
             >
               {t('Home')}
             </NavLink>
+
+            <NavLink
+              to="/core"
+              onClick={toggleMenu}
+              className="nav-link-mobile"
+              style={{ color: colors.primaryColor3 }}
+              activeClassName="font-bold"
+            >
+              {t('Core')}
+            </NavLink>
+
             <NavLink
               to="/hire"
               onClick={toggleMenu}
@@ -250,7 +261,7 @@ const Navbar = () => {
               {t('Connect')}
             </NavLink>
 
-      \
+    
             <NavLink
               to="/pricing"
               onClick={toggleMenu}

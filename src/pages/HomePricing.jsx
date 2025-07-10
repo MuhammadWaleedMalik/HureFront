@@ -79,7 +79,7 @@ const HomePricing = () => {
 
  
   return (
-    <div className="min-h-screen bg-[#F4EFEA] font-times-new-roman">
+    <div className=" bg-[#F4EFEA] font-times-new-roman">
       {/* Pricing Section */}
       <section className="py-16 px-4 lg:px-12">
         <h1 className="text-5xl font-bold text-center mb-8" style={{ color: colors.primary }}>Pricing</h1>
@@ -88,7 +88,7 @@ const HomePricing = () => {
           {plans.map((plan) => (
             <div key={plan.id} className="bg-white text-black p-6 rounded-lg shadow-lg text-center">
               <h2 className="text-2xl font-semibold mb-2" style={{ color: colors.primary }}>{plan.name}</h2>
-              <p className="text-lg mb-4" style={{ color: colors.accent }}>{plan.currency}{plan.price}/month</p>
+              <p className="text-lg mb-4" style={{ color: colors.accent }}>{plan.currency} {plan.price}/month</p>
               <ul className="text-left mb-6">
                 {plan.features.slice(0, 5).map((feature, i) => (
                   <li key={i} className="flex items-center mb-2"><FiCheck className="mr-2" style={{ color: colors.primary }} /> {feature}</li>

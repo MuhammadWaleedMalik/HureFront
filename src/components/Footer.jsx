@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FaFacebook, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaWhatsapp } from "react-icons/fa";
 
 import websites from '../../utils/Website/Website_Info.js';
 import styles from '../../styles/colors.module.scss';
@@ -11,9 +11,7 @@ const Footer = () => {
   const { t } = useTranslation();
 
   const colors = {
-    linkedinBlue: "#0077B5",
     facebookBlue: "#4267B2",
-    instagramPurple: "#E1306C",
     whatsappGreen: "#25D366"
   };
 
@@ -41,6 +39,10 @@ const Footer = () => {
       { name: "Contact Us", path: "/contact" },
     ]
   };
+
+  // Format WhatsApp number by removing all non-digit characters
+  const whatsappNumber = websites[0].contactnumber1.replace(/\D/g, '');
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
     <motion.footer
@@ -125,24 +127,17 @@ const Footer = () => {
           <div className="flex justify-center gap-6">
             {[
               {
-                href: websites[0].linkedinaccount,
-                icon: <FaLinkedin size={20} />,
-                bg: colors.linkedinBlue,
-                label: 'LinkedIn'
-              },
-              {
                 href: websites[0].facebookaccount,
                 icon: <FaFacebook size={20} />,
                 bg: colors.facebookBlue,
                 label: 'Facebook'
               },
               {
-                href: websites[0].instagramaccount,
-                icon: <FaInstagram size={20} />,
-                bg: colors.instagramPurple,
-                label: 'Instagram'
-              },
-            
+                href: whatsappUrl,
+                icon: <FaWhatsapp size={20} />,
+                bg: colors.whatsappGreen,
+                label: 'WhatsApp'
+              }
             ].map(({ href, icon, bg, label }, i) => (
               <motion.a
                 key={i}

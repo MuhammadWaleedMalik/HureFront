@@ -99,6 +99,18 @@ const AboutUs = () => {
             >
               We simplify <strong className="text-[green]">HR operations</strong> including hiring, compliance, retention, training, and professional networking — all in one secure digital ecosystem.
             </p>
+            {/* <Link
+              to={'/signup'}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="self-start px-6 py-2 rounded-lg font-medium"
+              style={{ 
+                backgroundColor: styles.primaryColor2,
+                color: styles.primaryColor1
+              }}
+            >
+              Signup
+            </Link> */}
           </motion.div>
 
           <motion.div
@@ -106,33 +118,9 @@ const AboutUs = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center"
+            className="grid grid-cols-2 gap-4"
           >
-            <img 
-              src="/public/images/landingpage.png" 
-              alt="HURE Platform Dashboard" 
-              className="rounded-lg shadow-lg w-full max-w-md"
-              style={{ border: `2px solid ${styles.primaryColor1}` }}
-            />
-          </motion.div>
-        </div>
-
-        {/* Services Grid Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h3 
-            className="text-2xl font-semibold mb-6 text-center"
-            style={{ color: styles.primaryColor1 }}
-          >
-            Our Services
-          </h3>
-          <div className="grid grid-cols-2 gap-4">
-            {services.map((service, index) => (
+            {services.slice(0, 4).map((service, index) => (
               <motion.div
                 key={index}
                 whileHover={{ y: -5 }}
@@ -162,8 +150,8 @@ const AboutUs = () => {
                 </p>
               </motion.div>
             ))}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Platform Features */}
         <motion.div
@@ -286,6 +274,57 @@ const AboutUs = () => {
             >
               View Pricing
             </Link>
+          </div>
+        </motion.div>
+
+        {/* Services Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h3 
+            className="text-2xl font-semibold mb-6 text-center"
+            style={{ color: styles.primaryColor1 }}
+          >
+            Platform Highlights
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="p-6 rounded-xl shadow-sm"
+                style={{ 
+                  backgroundColor: styles.primaryColor2,
+                  border: `1px solid ${styles.colorGray200}`
+                }}
+              >
+                <div 
+                  className="w-12 h-12 flex items-center justify-center rounded-full mb-4"
+                  style={{ backgroundColor: `${styles.primaryColor1}80` }}
+                >
+                  {service.icon}
+                </div>
+                <h4 
+                  className="text-lg font-semibold mb-2"
+                  style={{ color: styles.primaryColor1}}
+                >
+                  {service.title}
+                </h4>
+                <p 
+                  className="text-sm"
+                  style={{ color: styles.colorGray600 }}
+                >
+                  {service.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

@@ -104,7 +104,7 @@ const Pricing = () => {
           {plans.map((plan) => (
             <div key={plan.id} className="bg-white p-6 rounded-lg shadow-lg text-center">
               <h2 className="text-2xl font-semibold mb-2" style={{ color: colors.primary }}>{plan.name}</h2>
-              <p className="text-lg mb-4" style={{ color: colors.accent }}>{plan.currency}{plan.price}/month</p>
+              <p className="text-lg mb-4" style={{ color: colors.accent }}>{plan.currency} {plan.price}/month</p>
               <ul className="text-left mb-6">
                 {plan.features.slice(0, 5).map((feature, i) => (
                   <li key={i} className="flex items-center mb-2"><FiCheck className="mr-2" style={{ color: colors.primary }} /> {feature}</li>

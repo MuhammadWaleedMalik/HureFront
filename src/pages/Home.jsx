@@ -45,14 +45,14 @@ const rotate = {
   visible: { opacity: 1, rotate: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const user=localStorage.getItem('token')
+const user = localStorage.getItem('token');
 
 // ======================
 // REUSABLE COMPONENTS
 // ======================
 const AnimatedSection = ({ children, variants, className }) => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   React.useEffect(() => {
     if (inView) {
@@ -82,26 +82,23 @@ const HeroSection = ({ colors, setIsDemoModalOpen }) => {
   return (
     <>
       <section 
-        className="min-h-screen flex flex-col  justify-center items-center"
+        className="h-full mt-24 flex flex-col justify-center items-center px-4 py-16 md:py-0"
         style={{ backgroundColor: colors.primaryColor3 }}
       >
-        <AnimatedSection variants={fadeIn} className="text-center">
-          <h1 className="text-6xl font-bold mb-3 mt-12" style={{ color: 
-            colors.primaryColor1 , fontFamily: "New Times Roman" }}>
-                HURE
+        <AnimatedSection variants={fadeIn} className="text-center max-w-4xl px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-3" style={{ color: colors.primaryColor1, fontFamily: "New Times Roman" }}>
+            HURE
           </h1>
-          <p className="text-2xl mb-8" style={{ color: colors.primaryColor2 }}>
+          <p className="text-xl md:text-2xl mb-6" style={{ color: colors.primaryColor2 }}>
             A Unified HR Ecosystem, Built for Healthcare Teams
           </p>
-          <p className="text-2xl mr-24 ml-24 mb-8" style={{ color: colors.primaryColor1 }}>
-        
+          <p className="text-lg md:text-xl mb-8" style={{ color: colors.primaryColor1 }}>
             HURE is a unified platform designed specifically for healthcare organizations and medical professionals, 
             to manage their HR needs efficiently and effectively.
-          Utilized for recruitment, onboarding, compliance, training, and team engagement.
-
+            Utilized for recruitment, onboarding, compliance, training, and team engagement.
           </p>
           
-          <div className="flex justify-center ml-4 mt-12 gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
             <motion.button
               onClick={() => {
                 window.location.href = '/core';
@@ -118,16 +115,15 @@ const HeroSection = ({ colors, setIsDemoModalOpen }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
-                className="mt-1"
               >
                 <motion.button
                   onClick={() => setIsSignupModalOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 py-2 rounded-lg text-lg font-semibold transition-all"
+                  className="px-6 py-3 rounded-lg text-lg font-semibold transition-all"
                   style={{ backgroundColor: colors.primaryColor2, color: "#FFFFFF" }}
                 >
-                  {'Join Now'}
+                  Join Now
                 </motion.button>
               </motion.div>
             )}
@@ -149,10 +145,8 @@ const HeroSection = ({ colors, setIsDemoModalOpen }) => {
 // ======================
 // PAGE 2: WEBSITE INFO SECTION
 // ======================
-
-
 const WebsiteInfoSection = ({ colors }) => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const controls = useAnimation();
 
   React.useEffect(() => {
@@ -164,11 +158,11 @@ const WebsiteInfoSection = ({ colors }) => {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center mt-[-150px] mb-[-195px] justify-center px-6 md:px-16 py-12"
+      className="py-12 md:py-24 px-4 md:px-8"
       style={{ backgroundColor: colors.primaryColor3 }}
     >
-      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        {/* Left: Image */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+        {/* Image - Order changes on mobile */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={controls}
@@ -179,17 +173,18 @@ const WebsiteInfoSection = ({ colors }) => {
               transition: { delay: 0.2, duration: 0.6 },
             },
           }}
+          className="order-2 md:order-1"
         >
           <img
-            src="/images/landingpage.png" // You can replace this with any professional HURE dashboard illustration
+            src="/images/landingpage.png"
             alt="HURE Platform"
-            className="w-full rounded-lg shadow-2xl object-contain"
+            className="w-full rounded-lg shadow-xl object-contain"
             loading="lazy"
           />
         </motion.div>
 
-        {/* Right: Text Content */}
-        <div className="space-y-4">
+        {/* Text Content */}
+        <div className="space-y-4 order-1 md:order-2">
           <motion.h1
             initial={{ x: -10, opacity: 0 }}
             animate={controls}
@@ -200,7 +195,7 @@ const WebsiteInfoSection = ({ colors }) => {
                 transition: { delay: 0.3, duration: 0.4 },
               },
             }}
-            className="text-8xl md:text-[54px] font-bold italic leading-snug"
+            className="text-4xl md:text-5xl font-bold italic leading-snug"
             style={{
               background: `linear-gradient(to right, ${colors.primaryColor4}, ${colors.primaryColor5})`,
               backgroundClip: 'text',
@@ -222,12 +217,10 @@ const WebsiteInfoSection = ({ colors }) => {
                 transition: { delay: 0.5, duration: 0.4 },
               },
             }}
-            className="text-lg md:text-[22px] text-[#336573] leading-relaxed"
+            className="text-base md:text-lg text-[#336573] leading-relaxed"
             style={{ fontFamily: styles.text }}
           >
-          Healthcare Unified Resource Engine (HURE) is a Human Capital Management platform purpose-built for healthcare organizations across the region. We exist to help clinics, hospitals, and health networks manage their teams more efficiently, from recruitment and onboarding to shift scheduling, compliance, and continuous engagement.
-
-      
+            Healthcare Unified Resource Engine (HURE) is a Human Capital Management platform purpose-built for healthcare organizations across the region. We exist to help clinics, hospitals, and health networks manage their teams more efficiently, from recruitment and onboarding to shift scheduling, compliance, and continuous engagement.
           </motion.p>
         </div>
       </div>
@@ -235,14 +228,9 @@ const WebsiteInfoSection = ({ colors }) => {
   );
 };
 
-
-
-
-
 // ======================
 // PAGE 4: HOW IT WORKS SECTION
 // ======================
-
 const HowItWorksSection = ({ colors }) => {
   const [openStep, setOpenStep] = useState(null);
 
@@ -283,21 +271,22 @@ const HowItWorksSection = ({ colors }) => {
 
   return (
     <section
-      className="py-12 min-h-screen mb-[-130px] flex items-center"
+      className="py-12 px-4"
       style={{ backgroundColor: colors.primaryColor3 }}
     >
-      <div className="container mx-auto  text-center px-4">
+      <div className="container mx-auto text-center">
         <h2
-          className="text-5xl font-semibold mb-12"
+          className="text-3xl md:text-4xl font-semibold mb-8 md:mb-12"
           style={{ color: colors.primaryColor5 }}
         >
           Explore HURE Ecosystem
         </h2>
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {steps.map((step, index) => (
-            <div
+            <motion.div
               key={index}
-              className="relative  bg-white p-6 w-72 h-48 rounded-md shadow-md cursor-pointer hover:shadow-lg transition duration-300"
+              whileHover={{ y: -5 }}
+              className="relative bg-white p-6 rounded-md shadow-md cursor-pointer hover:shadow-lg transition duration-300 min-h-[200px] flex flex-col justify-start"
               style={{ borderColor: colors.primaryColor4 }}
               onClick={() => toggleStep(index)}
             >
@@ -313,8 +302,8 @@ const HowItWorksSection = ({ colors }) => {
 
               {/* Title */}
               <h3
-                className="mt-8 text-[24px]  font-medium"
-                style={{ color: colors.primaryColor5 , textDecoration : 'underline' }}
+                className="mt-8 text-xl font-medium mb-4"
+                style={{ color: colors.primaryColor5, textDecoration: 'underline' }}
               >
                 {step.title}
               </h3>
@@ -328,14 +317,14 @@ const HowItWorksSection = ({ colors }) => {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="mt-3 text-[17px]"
+                    className="text-sm md:text-base"
                     style={{ color: colors.primaryColor5 }}
                   >
                     {step.description}
                   </motion.p>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -343,6 +332,41 @@ const HowItWorksSection = ({ colors }) => {
   );
 };
 
+// ======================
+// TESTIMONIAL SECTION
+// ======================
+const TestimonialSection = ({ colors }) => {
+  return (
+    <section className="py-12 px-4" style={{ backgroundColor: colors.primaryColor3 }}>
+      <div className="max-w-4xl mx-auto text-center">
+        <h1 className="text-2xl md:text-3xl font-bold mb-8" style={{ color: '#9B7C70' }}>
+          Why Healthcare Teams Love HURE
+        </h1>
+        
+        <div className="space-y-4">
+          <p className="text-lg md:text-xl" style={{ color: colors.primaryColor5 }}>
+            ✅ "No more manual license tracking"
+          </p>
+          <p className="text-lg md:text-xl" style={{ color: colors.primaryColor5 }}>
+            ✅ "It helped our HR cut paperwork by 70%"
+          </p>
+          <p className="text-lg md:text-xl" style={{ color: colors.primaryColor5 }}>
+            ✅ "HR software built for healthcare, not corporate"
+          </p>
+        </div>
+        
+        <div className="mt-8">
+          <p className="text-lg md:text-xl mb-4" style={{ color: colors.primaryColor5 }}>
+            ✔️ Signing up to HURE Core unlocks all ecosystem modules.
+          </p>
+          <p className="text-lg md:text-xl" style={{ color: colors.primaryColor5 }}>
+            ✔️ Prefer just one? Hire, Events, and Connect are also available as a standalone subscription.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Home = () => {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -356,47 +380,19 @@ const Home = () => {
   };
 
   return (
-    <div style={{ backgroundColor: colors.primaryColor3, color: colors.primaryColor3, fontFamily: styles.headingFont }}>
+    <div
+      className="flex overflow-hidden flex-col"
+    style={{ backgroundColor: colors.primaryColor3, color: colors.primaryColor3, fontFamily: styles.headingFont }}>
       <HeroSection 
         colors={colors} 
         setIsDemoModalOpen={setIsDemoModalOpen}
       />
       <WebsiteInfoSection colors={colors} />
       <HowItWorksSection colors={colors} />
-      <div className=" flex flex-col">
-        <p className="text-center  justify-center flex-col text-[24px] mb-2" style={{ color: colors.primaryColor5 }}>
-          ✔️ Signing up to HURE Core unlocks all ecosystem modules.
-        </p>
-        <p className="text-center  justify-center flex-col text-[24px] " style={{ color: colors.primaryColor5 }}>
-           ✔️ Prefer just one? Hire, Events, and Connect are also available as a standalone subscription.
-
-        </p>
-
-
-      </div>
+      <TestimonialSection colors={colors} />
       <ApproachFlowchart colors={colors} />
-      <HomePricing/>
-       <div className="flex  flex-col">
-          
-          <h1 className="text-center  font-bold justify-center text-[#9B7C70] flex-col text-[36px] mb-2">Why Healthcare Teams Love HURE</h1>
-
-        <p className="text-center  justify-center flex-col text-[24px] mb-2" style={{ color: colors.primaryColor5 }}>
-        •	✅ “No more manual license tracking”
-        </p>
-        <p className="text-center  justify-center flex-col text-[24px] " style={{ color: colors.primaryColor5 }}>
-          •	✅ “It helped our HR cut paperwork by 70%”
-        </p>
-        <p className="text-center  justify-center flex-col text-[24px] " style={{ color: colors.primaryColor5 }}>
-          •	✅ “HR software built for healthcare, not corporate”
-        </p>
-
-
-
-
-      </div>
-     
+      <HomePricing colors={colors} />
       <Features colors={colors} />
-
       <RequestDemo 
         isOpen={isDemoModalOpen} 
         onClose={() => setIsDemoModalOpen(false)} 
