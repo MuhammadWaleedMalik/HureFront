@@ -18,7 +18,7 @@ const Pricing = () => {
     { 
       id: "essential", 
       name: "Essential", 
-      price: "8000", 
+      price: "8,000", 
       duration: "month", 
       currency: "Ksh",
       idealFor: "Solo clinics or small teams (5–15 staff)",

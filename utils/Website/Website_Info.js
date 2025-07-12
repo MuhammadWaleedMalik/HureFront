@@ -3,8 +3,8 @@ const websites = [
         name: 'HURE', 
         slogan: 'Smarter HR for Healthcare Teams' ,
         logo  :  '/images/logo.png' , 
-        contactwebsite : "Info@gethure.com" ,
-        contactwebsite1   : "Info@gethure.com" ,
+        contactwebsite : "info@gethure.com" ,
+        contactwebsite1   : "info@gethure.com" ,
         contactnumber1  : "+254798190759" , 
         contactnumber2  : "+254798190759" , 
 
