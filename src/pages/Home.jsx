@@ -100,24 +100,23 @@ const HeroSection = ({ colors, setIsDemoModalOpen }) => {
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
             <motion.button
-              onClick={() => {
-                window.location.href = '/demo.gethure.com';
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 rounded-lg text-lg font-semibold transition-all"
-                style={{ backgroundColor: colors.primaryColor5, color: "#FFFFFF" }}
-              >
-                Watch Demo
-              </motion.button>
-              {!user && (
-                <motion.div
+              onClick={() => { window.open('https://demo.gethure.com', '_blank'); }}
+
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 rounded-lg text-lg font-semibold transition-all"
+              style={{ backgroundColor: colors.primaryColor5, color: "#FFFFFF" }}
+            >
+              Watch Demo
+            </motion.button>
+            {!user && (
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
-                >
+              >
                 <motion.button
-                  onClick={() => { window.location.href = 'https://demo.gethure.com'; }}
+                  onClick={()=>{window.location.href='/pricing'}}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-6 py-3 rounded-lg text-lg font-semibold transition-all"
@@ -125,13 +124,13 @@ const HeroSection = ({ colors, setIsDemoModalOpen }) => {
                 >
                   Join Now
                 </motion.button>
-                </motion.div>
-              )}
-              </div>
-            </AnimatedSection>
-            </section>
+              </motion.div>
+            )}
+          </div>
+        </AnimatedSection>
+      </section>
 
-            {/* Signup Modal */}
+      {/* Signup Modal */}
       {isSignupModalOpen && (
         <SignupModal 
           isOpen={isSignupModalOpen} 
