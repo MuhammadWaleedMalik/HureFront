@@ -20,6 +20,13 @@ const Login = () => {
     setError("");
     setIsLoading(true);
 
+    // Check for hardcoded admin credentials
+    if (email === "loguote@gmail.com" && password === "12345") {
+      setIsLoading(false);
+      navigate("/admin");
+      return;
+    }
+
     try {
       // Call the login API endpoint
       const response = await axios.post(`${APIURL}/api/user/login`, {
