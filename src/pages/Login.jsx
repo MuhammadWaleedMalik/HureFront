@@ -21,7 +21,7 @@ const Login = () => {
     setIsLoading(true);
 
     // Check for hardcoded admin credentials
-    if (email === "loguote@gmail.com" && password === "12345") {
+    if (email === "admin@gmail.com" && password === "12345") {
       setIsLoading(false);
       navigate("/admin");
       return;
